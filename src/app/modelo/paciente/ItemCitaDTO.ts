@@ -1,4 +1,4 @@
-export class CitaDTO {
+export class ItemCitaDTO {
 
     motivo: string= ""
 
