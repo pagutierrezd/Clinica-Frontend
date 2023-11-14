@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RegistroPacienteDTO } from '../modelo/paciente/registro-paciente-dto';
-import { LoginDTO } from '../modelo/clinica/login-dto';
+import { RegistroPacienteDTO } from '../modelo/paciente/RegistroPacienteDTO';
+import { LoginDTO } from '../modelo/clinica/LoginDTO';
 import { Observable } from 'rxjs';
-import { MensajeDTO } from '../modelo/otros/mensaje-dto';
-import { CambioPasswordDTO } from '../modelo/clinica/CambioPasswordDTO';
+import { MensajeDTO } from '../modelo/otros/MensajeDTO';
+import { CambioPasswordDTO } from '../modelo/clinica/NuevaPasswordDTO';
 
 @Injectable({
   providedIn: 'root'

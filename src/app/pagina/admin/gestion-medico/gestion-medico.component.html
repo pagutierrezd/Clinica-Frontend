@@ -1,0 +1,58 @@
+<form>
+    <div class="mb-3 row">
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Ingresa la cédula del médico">
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Buscar</button>
+
+    <br>
+    <br>
+    <table class="table">
+        <thead class="text-center">
+            <tr>
+                <th>Id</th>
+                <th>Cédula</th>
+                <th>Nombre Completo</th>
+                <th>Especialidad</th>
+                <th>Estado</th>
+                <th>Operaciones</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider text-center">
+            <tr>
+                <td>1</td>
+                <td>123456789</td>
+                <td>Juan Pérez</td>
+                <td>Cirujano</td>
+                <td>Activo</td>
+                <td>
+                    <div style="display: flex; justify-content: center">
+                        <button type="submit" class="btn btn-outline-none"><i class="fa-solid fa-eye"></i></button>
+                        <button type="submit" class="btn btn-outline-none"><i class="fa-solid fa-trash"></i></button>
+                        <button type="submit" class="btn btn-outline-none"><i
+                                class="fa-solid fa-pen-to-square"></i></button>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>987654321</td>
+                <td>Pedro García</td>
+                <td>Pediatra</td>
+                <td>Inactivo</td>
+                <td>
+                    <div style="display: flex; justify-content: center">
+                        <button type="submit" class="btn btn-outline-none"><i class="fa-solid fa-eye"></i></button>
+                        <button type="submit" class="btn btn-outline-none"><i class="fa-solid fa-trash"></i></button>
+                        <button type="submit" class="btn btn-outline-none"><i
+                                class="fa-solid fa-pen-to-square"></i></button>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.css']
+selector: 'app-inicio',
+templateUrl: './inicio.component.html',
+styleUrls: ['./inicio.component.css']
 })
-export class InicioComponent {
-
+export class InicioComponent { 
+    title = "hola"
+    integrantes = "Paula Andrea Gutierrez, Yeferson Cardona"
 }
