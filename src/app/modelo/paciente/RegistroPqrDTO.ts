@@ -1,4 +1,4 @@
-export class PQRSPacienteDTO {
+export class RegistroPqrDTO {
 
     codigoCita: number= 0
 

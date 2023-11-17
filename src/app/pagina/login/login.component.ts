@@ -22,13 +22,15 @@ export class LoginComponent {
   }
 
   public login() {
+    const objeto = this;
+
     this.authService.login(this.loginDTO).subscribe({
       next: data => {
-        this.tokenService.login(data.respuesta.token);
+        objeto.tokenService.login(data.respuesta.token);
 
       },
       error: error => {
-        this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
+        objeto.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
 
       }
     });
