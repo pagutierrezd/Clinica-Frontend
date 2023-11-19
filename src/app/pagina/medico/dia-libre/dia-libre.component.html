@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0">Dia libre</h5>
+    </div>
+    <div class="card-body p-5">
+        <form>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="fecha">Elija la fecha: </label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="date" [(ngModel)]="diaLibre.fecha" name="fecha" id="fecha">
+                </div>
+            </div>
+
+            <div>
+                <button class="btn btn-primary" (click)="agendarDiaLibre()" type="submit">Agregar</button>
+                <button class="btn btn-primary" type="submit">Actualizar</button>
+            </div>
+
+            <div>
+                <table class="table">
+                    <thead class="text-center">
+                        <tr>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider text-center">
+                        <tr *ngFor="let item of diasLibres">
+                            <td>
+                                <p>{{item.fecha}}</p>
+                            </td>
+
+                    </tbody>
+                </table>
+            </div>
+            <app-alerta [alerta]="alerta"></app-alerta>
+        </form>
+    </div>
+</div>

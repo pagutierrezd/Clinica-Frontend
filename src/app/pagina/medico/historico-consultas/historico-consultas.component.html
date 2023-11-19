@@ -1,0 +1,53 @@
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0">Historico de consultas</h5>
+    </div>
+    <div class="card-body p-5">
+        <form>
+            <div class="mb-3 row">
+                <div class="col-sm-4">
+                    <input type="date" name="fecha" class="form-control" [(ngModel)]="fechaSeleccionada"
+                        (change)="seleccionarFecha($event)">
+                </div>
+            </div>
+            <table class="table">
+                <thead class="text-center">
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Fecha</th>
+                        <th>Notas del Medico</th>
+                        <th>Diagnóstico</th>
+                        <th>Tratamiento</th>
+                        <th>Sintomas</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+                    <tr *ngFor="let item of auxiliarConsultas">
+                        <td>
+                            <p>{{item.nombrePaciente}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.fecha}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.notasMedico}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.diagnostico}}</p>
+                        </td>
+                        <td>
+                            <div style="display: flex; justify-content: center">
+                                <button routerLink="/tratamiento/{{item.idConsulta}}" type="submit"
+                                    class="btn btn-outline-none"><i class="fa-solid fa-eye"></i></button>
+                            </div>
+                        </td>
+                        <td>
+                            <p>{{item.sintomas}}</p>
+                        </td>
+                </tbody>
+            </table>
+            <app-alerta [alerta]="alerta"></app-alerta>
+        </form>
+
+    </div>
+</div>

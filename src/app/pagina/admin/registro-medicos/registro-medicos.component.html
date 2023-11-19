@@ -1,0 +1,148 @@
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0">Registro médicos</h5>
+    </div>
+    <div class="card-body p-5">
+        <form>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Cédula:</label>
+                <div class="col-sm-10">
+
+                    <input type="text" class="form-control" name="cedula" placeholder="Cédula">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Nombre completo:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="nombrecompleto" placeholder="Nombre completo">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Especialidad:</label>
+                <div class="col-sm-10">
+                    <select name="especialidad" class="form-select">
+                        <option value="Medicina General">Medicina General</option>
+                        <option value="Pediatría">Pediatría</option>
+                        <option value="Ginecología">Ginecología</option>
+                        <option value="Cirugía">Cirugía</option>
+                        <option value="Odontología">Odontología</option>
+                        <option value="Psicología">Psicología</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Ciudad:</label>
+                <div class="col-sm-10">
+                    <select name="ciudad" class="form-select">
+                        <option value="Bogotá">Bogotá</option>
+                        <option value="Medellín">Medellín</option>
+                        <option value="Cali">Cali</option>
+                        <option value="Barranquilla">Barranquilla</option>
+                        <option value="Cartagena">Cartagena</option>
+                        <option value="Pereira">Pereira</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Foto:</label>
+                <div class="col-sm-10">
+
+                    <input class="form-control" type="file" name="foto">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Telefono:</label>
+                <div class="col-sm-10">
+
+                    <input type="text" class="form-control" name="telefono" placeholder="Teléfono">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Email:</label>
+                <div class="col-sm-10">
+
+                    <input type="email" class="form-control" name="email" placeholder="Email">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Contraseña:</label>
+                <div class="col-sm-10">
+
+                    <input type="password" class="form-control" name="contrasena" placeholder="Contraseña">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Repite la contraseña:</label>
+                <div class="col-sm-10">
+                    <input type="confirmaPassword" class="form-control" name="confirmaPassword"
+                        placeholder="Contraseña">
+                </div>
+            </div>
+
+
+            <input class="btn btn-primary" type="submit" value="Registrar">
+
+            <h3>Programar Horarios</h3>
+
+
+            <label class="col-sm-2 col-form-label">Dia:</label>
+
+            <input type="radio" name="dia" value="lunes"> Lunes
+            <input type="radio" name="dia" value="martes"> Martes
+            <input type="radio" name="dia" value="miércoles"> Miércoles
+            <input type="radio" name="dia" value="jueves"> Jueves
+            <input type="radio" name="dia" value="viernes"> Viernes
+            <input type="radio" name="dia" value="sábado"> Sábado
+            <input type="radio" name="dia" value="domingo"> Domingo
+
+            <div class="mb-3 row">
+
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="horainicio" placeholder="Hora Inicio">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="horafin" placeholder="Hora Fin">
+                </div>
+            </div>
+
+            <input class="btn btn-primary" type="submit" value="Agregar">
+            <input class="btn btn-primary" type="submit" value="Actualizar">
+
+            <table class="table">
+                <thead class="text-center">
+                    <tr>
+                        <th>Día</th>
+                        <th>Hora Inicio</th>
+                        <th>Hora Fin</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+                    <tr>
+                        <td>Jueves</td>
+                        <td>17:30</td>
+                        <td>19:30</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <input class="btn btn-primary" type="submit" value="Agregar Médico">
+            <input class="btn btn-primary" type="submit" value="Actualizar Médico">
+            <input class="btn btn-primary" type="submit" value="Ver Médicos">
+        </form>
+    </div>
+</div>

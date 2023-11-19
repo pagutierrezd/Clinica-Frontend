@@ -1,0 +1,137 @@
+<link rel="stylesheet" type="text/css" href="pqrs-paciente.component.css">
+
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0">Pqrs paciente</h5>
+    </div>
+    <div class="card-body p-5">
+        <form #f="ngForm">
+
+            <div class="mb-3 row">
+                <div class="col-sm-4">
+                    <input type="date" name="fecha" class="form-control" placeholder="Fecha"
+                        (change)="seleccionarFecha($event)">
+                </div>
+            </div>
+            <table class="table">
+                <thead class="text-center">
+                    <tr>
+                        <th></th>
+                        <th>Id</th>
+                        <th>Fecha cita</th>
+
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+                    <tr *ngFor="let item of auxiliarCitas">
+                        <td><input class="form-check-input" type="checkbox" (change)="seleccionar(item.idCita)"
+                                (change)="onCheckboxChange($event)" /></td>
+
+                        <td>
+                            <p>{{item.idCita}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.fecha}}</p>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="alert alert-danger" role="alert" *ngIf="selectedCheckboxCount > 1">
+                Solo se puede seleccionar una cita a la vez
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Detalle: </label>
+                <div class="col-sm-10">
+                    <textarea [(ngModel)]="detalle" type="text" [(ngModel)]="pqrsPacienteDTO.motivo" name="detalle"
+                        required class="form-control"></textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary" (click)="crearPqrs()" type="submit" [disabled]="isButtonDisabled()">
+                <i class="fa-solid fa-circle-plus me-1"></i>Crear PQRS
+            </button>
+            <br>
+            <br>
+            <h5>Filtro por Estado</h5>
+            <div class="mb-3 row">
+                <div class="col-sm-4">
+                    <select name="estado" required class="form-select" (change)="filtrarTabla($event)"
+                        [(ngModel)]="estadoSeleccionado" (ngModelChange)="seleccionarEstado()">
+                        <option value="" selected>Seleccione el estado</option>
+                        <option [value]="item" *ngFor="let item of estadosPqrs; index as i">{{item}}</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <table class="table">
+                <thead class="text-center">
+                    <tr>
+                        <th>Código de Radicación</th>
+                        <th>Detalle</th>
+                        <th>Fecha de Creacion</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+                    <tr *ngFor="let item of auxiliarPqrs; let i = index" (click)="seleccionarFila(item)">
+                        <td>
+                            <p>{{item.codigo}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.motivo}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.fecha}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.estadoPqrs}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Historial de mensajes: </label>
+            </div>
+
+            <div class="chat-history">
+                <ul class="m-b-0">
+                    <li class="clearfix" *ngFor="let item of mensajesDTO">
+                        <ng-container *ngIf="item.nombreUsuario.includes('@')">
+                            <div class="message-data text-end">
+                                <span class="message-data-time">{{ item.fecha }}</span>
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                            </div>
+                            <div class="message other-message float-right">
+                                {{ item.mensaje }}
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="!item.nombreUsuario.includes('@')">
+                            <div class="message-data">
+                                <span class="message-data-time">{{ item.fecha }}</span>
+                            </div>
+                            <div class="message my-message">
+                                {{ item.mensaje }}
+                            </div>
+                        </ng-container>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Respuesta: </label>
+                <div class="col-sm-10">
+                    <textarea width="200" height="100" [(ngModel)]="respuestaPaciente.mensaje" class="form-control"
+                        name="mensaje"></textarea>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-primary" (click)="enviarRespuesta()" type="submit">Enviar</button>
+            </div>
+
+            <app-alerta [alerta]="alerta"></app-alerta>
+        </form>
+    </div>
+</div>

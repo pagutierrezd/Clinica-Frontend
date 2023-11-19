@@ -14,23 +14,21 @@ export class LoginComponent {
 
   loginDTO: LoginDTO;
   alerta!: Alerta;
-  mostrarMensaje:string ="";
-  mostrarMess:boolean=false;
+  mostrarMensaje: string = "";
+  mostrarMess: boolean = false;
 
   constructor(private tokenService: TokenService, private authService: AuthService, private clinicaService: ClinicaService) {
     this.loginDTO = new LoginDTO();
   }
 
   public login() {
-    const objeto = this;
-
     this.authService.login(this.loginDTO).subscribe({
       next: data => {
-        objeto.tokenService.login(data.respuesta.token);
+        this.tokenService.login(data.respuesta.token);
 
       },
       error: error => {
-        objeto.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
+        this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
 
       }
     });
@@ -39,13 +37,13 @@ export class LoginComponent {
   enviarLinkRecuperacion(event: Event) {
     event.preventDefault();
 
-    if(this.loginDTO.email==""){
-      this.mostrarMess=true;
-      this.mostrarMensaje="Se debe ingresar el correo si desea recuperar la cuenta"
-      
-    }else{
-      this.mostrarMess=false;
-      let email : string = this.loginDTO.email;
+    if (this.loginDTO.email == "") {
+      this.mostrarMess = true;
+      this.mostrarMensaje = "Debes ingresar el correo si quieres recuperar la cuenta"
+
+    } else {
+      this.mostrarMess = false;
+      let email: string = this.loginDTO.email;
 
       this.clinicaService.enviarLinkRecuperacion(email).subscribe({
         next: data => {
@@ -55,6 +53,8 @@ export class LoginComponent {
           this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
         }
       });
-    }   
+    }
+
+
   }
 }

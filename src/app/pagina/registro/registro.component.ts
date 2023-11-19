@@ -42,9 +42,10 @@ export class RegistroComponent {
         }
       });
     } else {
-      this.alerta = { mensaje: "Debe cargar una imagen", tipo: "danger" };
+      this.alerta = { mensaje: "Debe subir una imagen", tipo: "danger" };
     }
   }
+
 
   public sonIguales(): boolean {
     return this.registroPacienteDTO.password == this.registroPacienteDTO.confirmaPassword;
@@ -97,7 +98,7 @@ export class RegistroComponent {
       this.imagenService.subir(formData).subscribe({
         next: data => {
           this.registroPacienteDTO.foto = data.respuesta.url;
-         
+
         },
         error: error => {
           this.alerta = { mensaje: error.error, tipo: "danger" };

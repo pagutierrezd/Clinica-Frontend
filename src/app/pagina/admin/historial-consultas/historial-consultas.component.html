@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0">Consultas médicas</h5>
+    </div>
+    <div class="card-body p-5">
+        <form>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Nombre del médico: </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="textoIngresado" (input)="onInputChange($event)"
+                        placeholder="Ingresa el nombre del médico">
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Elija la fecha: </label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" [(ngModel)]="fechaSeleccionada"
+                        (change)="seleccionarFecha($event)">
+
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Buscar</button>
+            <table class="table">
+                <thead class="text-center">
+                    <tr>
+                        <th>Cédula Paciente</th>
+                        <th>Nombre Paciente</th>
+                        <th>Fecha de Atención</th>
+                        <th>Nombre Medico</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+                    <tr>
+                        <td>123</td>
+                        <td>Juan Pérez</td>
+                        <td>20/08/2023</td>
+                        <td>Alexander</td>
+                    </tr>
+                    <tr>
+                        <td>1234</td>
+                        <td>Marco Botton</td>
+                        <td>2/07/2023</td>
+                        <td>Javier</td>
+                    </tr>
+                    <tr>
+                        <td>12345</td>
+                        <td>Mariah Maclachlan</td>
+                        <td>12/08/2023</td>
+                        <td>Luis</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+</div>

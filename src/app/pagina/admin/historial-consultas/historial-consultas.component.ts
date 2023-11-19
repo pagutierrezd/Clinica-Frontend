@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class HistorialConsultasComponent {
   fechaSeleccionada: string = ''
- 
-  seleccionarFecha(event:any) {
-    console.log('Fecha seleccionada:', this.fechaSeleccionada);  
+
+  seleccionarFecha(event: any) {
+    console.log('Fecha seleccionada:', this.fechaSeleccionada);
   }
 
   textoIngresado: string = '';
