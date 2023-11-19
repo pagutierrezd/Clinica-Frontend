@@ -1,7 +1,6 @@
 <div class="card">
     <div class="card-header ps-5 pt-4 pb-4">
-        <h5 class="mb-0"><i class="fa-solid fa-user-plus me-3"></i>Registro de un nuevo
-            paciente</h5>
+        <h5 class="mb-0"><i class="fa-solid fa-user-plus me-3"></i>Información personal</h5>
     </div>
     <div class="card-body p-5">
         <form #f="ngForm">
@@ -11,7 +10,8 @@
                 <div class="col-sm-10">
                     <input #cedula="ngModel"
                         [ngClass]="cedula.invalid && (cedula.dirty || cedula.touched) ? 'is-invalid' : ''" type="text"
-                        name="cedula" class="form-control" required [(ngModel)]="registroPacienteDTO.cedula" />
+                        name="cedula" class="form-control" required [(ngModel)]="pacienteActualizadoDTO.cedula"
+                        value="{{datosPaciente.cedula}}" />
                 </div>
             </div>
             <div class="mb-3 row">
@@ -19,7 +19,8 @@
                 <div class="col-sm-10">
                     <input #nombre="ngModel"
                         [ngClass]="nombre.invalid && (nombre.dirty || nombre.touched) ? 'is-invalid' : ''" type="text"
-                        name="nombre" class="form-control" required [(ngModel)]="registroPacienteDTO.nombre" />
+                        name="nombre" class="form-control" required [(ngModel)]="pacienteActualizadoDTO.nombre"
+                        value="{{datosPaciente.nombre}}" />
                 </div>
             </div>
             <div class="mb-3 row">
@@ -28,7 +29,7 @@
                     <input #telefono="ngModel"
                         [ngClass]="telefono.invalid && (telefono.dirty || telefono.touched) ? 'is-invalid' : ''"
                         type="text" name="telefono" class="form-control" required="true" maxlength="10"
-                        [(ngModel)]="registroPacienteDTO.telefono" />
+                        [(ngModel)]="pacienteActualizadoDTO.telefono" value="{{datosPaciente.telefono}}" />
                 </div>
             </div>
             <div class="mb-3 row">
@@ -42,23 +43,21 @@
                     </button>
                 </div>
             </div>
-
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Ciudad: </label>
                 <div class="col-sm-10">
-                    <select name="ciudad" required class="form-select" [(ngModel)]="registroPacienteDTO.ciudad">
+                    <select name="ciudad" required class="form-select" [(ngModel)]="pacienteActualizadoDTO.ciudad">
                         <option value="" selected>Seleccione una ciudad</option>
                         <option [value]="item" *ngFor="let item of ciudades; index as i">{{item}}</option>
                     </select>
                 </div>
-
             </div>
 
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Fecha de nacimiento: </label>
                 <div class="col-sm-10">
                     <input type="date" name="fechaNacimiento" required="true" class="form-control"
-                        [(ngModel)]="registroPacienteDTO.fechaNacimiento" />
+                        [(ngModel)]="pacienteActualizadoDTO.fechaNacimiento" />
                 </div>
             </div>
             <div class="mb-3 row">
@@ -66,14 +65,15 @@
                 <div class="col-sm-10">
                     <input type="text" name="alergias" #alergias="ngModel"
                         [ngClass]="alergias.invalid && (alergias.dirty || alergias.touched) ? 'is-invalid' : ''"
-                        required="true" class="form-control" [(ngModel)]="registroPacienteDTO.alergias" />
+                        required="true" class="form-control" [(ngModel)]="pacienteActualizadoDTO.alergias"
+                        value="{{datosPaciente.alergias}}" />
                 </div>
 
             </div>
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">EPS: </label>
                 <div class="col-sm-10">
-                    <select name="eps" required class="form-select" [(ngModel)]="registroPacienteDTO.eps">
+                    <select name="eps" required class="form-select" [(ngModel)]="pacienteActualizadoDTO.eps">
                         <option value="" selected>Seleccione una EPS</option>
                         <option [value]="item.codigo" *ngFor="let item of eps; index as i">{{item.nombre}}</option>
                     </select>
@@ -84,7 +84,7 @@
                 <label class="col-sm-2 col-form-label">Tipo Sangre: </label>
                 <div class="col-sm-10">
                     <select name="tipo_sangre" required class="form-select"
-                        [(ngModel)]="registroPacienteDTO.tipoSangre">
+                        [(ngModel)]="pacienteActualizadoDTO.tipoSangre">
                         <option value="" selected>Seleccione un tipo de sangre</option>
                         <option [value]="item" *ngFor="let item of tipo_sangre; index as i">{{item}}</option>
                     </select>
@@ -97,35 +97,16 @@
                     <input type="email" name="correo" #correo="ngModel"
                         [ngClass]="correo.invalid && (correo.dirty || correo.touched) ? 'is-invalid' : ''"
                         required="true" class="form-control" email="true" maxlength="50"
-                        [(ngModel)]="registroPacienteDTO.email" />
-                </div>
-
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label">Contraseña: </label>
-                <div class="col-sm-10">
-                    <input type="password" name="password" #password="ngModel"
-                        [ngClass]="password.invalid && (password.dirty || password.touched) ? 'is-invalid' : ''"
-                        required="true" class="form-control" [(ngModel)]="registroPacienteDTO.password" />
+                        [(ngModel)]="pacienteActualizadoDTO.email" value="{{datosPaciente.email}}" />
                 </div>
             </div>
 
-            <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label">Repetir contraseña: </label>
-                <div class="col-sm-10">
-                    <input type="password" name="confirmaPassword" #confirmaPassword="ngModel"
-                        [ngClass]="confirmaPassword.invalid && (confirmaPassword.dirty || confirmaPassword.touched) ? 'is-invalid' : ''"
-                        required="true" class="form-control" [(ngModel)]="registroPacienteDTO.confirmaPassword" />
-                </div>
-            </div>
-            <br>
-            <div class="alert alert-danger" role="alert" *ngIf="!sonIguales()">Las contraseñas no
-                coinciden</div>
-            <button (click)="registrar()" class="btn btn-primary" type="submit" [disabled]="f.invalid || !sonIguales()">
-                <i class="fa-solid fa-circle-plus me-1"></i>Registrarse
+            <button class="btn btn-primary" (click)="actualizar()" type="submit" [disabled]="f.invalid">
+                Actualizar información
             </button>
-            <app-alerta [alerta]="alerta"></app-alerta>
-
+            <button class="btn btn-primary" (click)="eliminarCuenta()" type="submit">
+                Eliminar cuenta
+            </button>
         </form>
     </div>
 </div>

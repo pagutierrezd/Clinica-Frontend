@@ -1,39 +1,59 @@
 import { Component } from '@angular/core';
 import { Alerta } from 'src/app/modelo/alerta';
 import { EpsDTO } from 'src/app/modelo/clinica/EpsDTO';
-import { RegistroPacienteDTO } from 'src/app/modelo/paciente/RegistroPacienteDTO';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { ActualizarPacienteDTO } from 'src/app/modelo/paciente/ActualizarPacienteDTO';
 import { ClinicaService } from 'src/app/servicios/clinica.service';
 import { ImagenService } from 'src/app/servicios/imagen.service';
+import { PacienteService } from 'src/app/servicios/paciente.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  selector: 'app-gestion-info-personal',
+  templateUrl: './gestion-info-personal.component.html',
+  styleUrls: ['./gestion-info-personal.component.css']
 })
-export class RegistroComponent {
+export class GestionInfoPersonalComponent {
 
-  registroPacienteDTO: RegistroPacienteDTO;
   ciudades: string[];
-  eps: EpsDTO[];
   tipo_sangre: string[];
-  alerta!: Alerta;
+  eps: EpsDTO[];
   archivos!: FileList;
+  alerta!: Alerta
+  datosPaciente: ActualizarPacienteDTO;
 
-  constructor(private authService: AuthService, private clinicaService: ClinicaService, private imagenService: ImagenService) {
-    this.registroPacienteDTO = new RegistroPacienteDTO();
+  pacienteActualizadoDTO: ActualizarPacienteDTO;
+  constructor(private tokenService: TokenService, private pacienteService: PacienteService, private clinicaService: ClinicaService, private imagenService: ImagenService) {
+    this.pacienteActualizadoDTO = new ActualizarPacienteDTO();
+    this.datosPaciente = new ActualizarPacienteDTO();
     this.ciudades = [];
     this.eps = [];
-    this.cargarEPS();
     this.cargarCiudades();
     this.tipo_sangre = [];
     this.cargarTipoSangre();
+    this.cargarEPS();
+    this.obtenerDatosPaciente();
+  }
+
+  public obtenerDatosPaciente() {
+    let codigoPaciente = this.tokenService.getCodigo();
+
+    this.pacienteService.cargarDatosPaciente(codigoPaciente).subscribe({
+      next: data => {
+        this.datosPaciente = data.respuesta;
+      },
+      error: error => {
+        this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
+      }
+    });
 
   }
 
-  public registrar() {
-    if (this.registroPacienteDTO.foto.length != 0) {
-      this.authService.registrarPaciente(this.registroPacienteDTO).subscribe({
+  public actualizar() {
+
+    let codigoPaciente = this.tokenService.getCodigo();
+
+    if (this.pacienteActualizadoDTO.foto.length != 0) {
+      this.pacienteService.editarPerfil(codigoPaciente, this.pacienteActualizadoDTO).subscribe({
         next: data => {
           this.alerta = { mensaje: data.respuesta, tipo: "success" };
         },
@@ -46,9 +66,19 @@ export class RegistroComponent {
     }
   }
 
+  public eliminarCuenta() {
 
-  public sonIguales(): boolean {
-    return this.registroPacienteDTO.password == this.registroPacienteDTO.confirmaPassword;
+    let codigoPaciente = this.tokenService.getCodigo();
+
+    this.pacienteService.eliminarCuenta(codigoPaciente).subscribe({
+      next: data => {
+        this.alerta = { mensaje: data.respuesta, tipo: "success" };
+      },
+      error: error => {
+        this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
+      }
+    });
+
   }
 
   private cargarCiudades() {
@@ -86,7 +116,7 @@ export class RegistroComponent {
 
   public onFileChange(event: any) {
     if (event.target.files.length > 0) {
-      this.registroPacienteDTO.foto = event.target.files[0].name;
+      this.pacienteActualizadoDTO.foto = event.target.files[0].name;
       this.archivos = event.target.files;
     }
   }
@@ -97,7 +127,7 @@ export class RegistroComponent {
       formData.append('file', this.archivos[0]);
       this.imagenService.subir(formData).subscribe({
         next: data => {
-          this.registroPacienteDTO.foto = data.respuesta.url;
+          this.pacienteActualizadoDTO.foto = data.respuesta.url;
 
         },
         error: error => {

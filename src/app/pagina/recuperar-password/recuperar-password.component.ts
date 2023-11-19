@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Alerta } from 'src/app/modelo/alerta';
 import { CambioPasswordDTO } from 'src/app/modelo/clinica/NuevaPasswordDTO';
 import { AuthService } from 'src/app/servicios/auth.service';
-import { ClinicaService } from 'src/app/servicios/clinica.service';
 import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
@@ -15,19 +14,19 @@ export class RecuperarPasswordComponent {
 
   alerta!: Alerta
   cambiarPasswordDTO: CambioPasswordDTO;
-  email:string = ""
+  email: string = ""
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private tokenService: TokenService) {
     this.cambiarPasswordDTO = new CambioPasswordDTO;
     this.route.params.subscribe(params => {
       this.email = params['email'];
-      
+
     });
   }
 
-  public cambiarPasssword(){
+  public cambiarPasssword() {
 
-    this.cambiarPasswordDTO.email=this.email;
+    this.cambiarPasswordDTO.email = this.email;
 
     this.authService.cambiarPassword(this.cambiarPasswordDTO).subscribe({
       next: data => {

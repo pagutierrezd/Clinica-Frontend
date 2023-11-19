@@ -1,0 +1,66 @@
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0">Historial de consultas</h5>
+    </div>
+    <div class="card-body p-5">
+        <form #f="ngForm">
+            <div class="mb-3 row">
+                <div class="col-sm-10">
+                    <select name="medico" required class="form-select" [(ngModel)]="busquedaConsulta.nombreMedico">
+                        <option value="" selected>Seleccione el nombre de un medico</option>
+                        <option [value]="item.nombreMedico" *ngFor="let item of consultasPaciente; index as i">
+                            {{item.nombreMedico}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="col-sm-10">
+                    <input type="date" name="fecha" class="form-control" [(ngModel)]="busquedaConsulta.fecha">
+                </div>
+            </div>
+
+
+            <input class="btn btn-primary" (click)="buscarConsultas()" type="submit" value="Buscar">
+
+            <table class="table">
+                <thead class="text-center">
+                    <tr>
+                        <th scope="col">Medico</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Notas del Medico</th>
+                        <th scope="col">Diagnostico</th>
+                        <th scope="col">Tratamiento</th>
+                        <th scope="col">Sintomas</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+
+                    <tr *ngFor="let item of consultasPaciente">
+                        <td>
+                            <p>{{item.nombreMedico}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.fecha}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.diagnostico}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.notasMedico}}</p>
+                        </td>
+                        <td>
+                            <div style="display: flex; justify-content: center">
+                                <button routerLink="/tratamiento/{{item.codigoConsulta}}" type="submit"
+                                    class="btn btn-outline-none"><i class="fa-solid fa-eye"></i></button>
+                            </div>
+                        </td>
+                        <td>
+                            <p>{{item.sintomas}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-alerta [alerta]="alerta"></app-alerta>
+        </form>
+    </div>
+</div>

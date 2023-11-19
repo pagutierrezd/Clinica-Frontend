@@ -1,8 +1,8 @@
 export interface ItemPqrDTO {
 
-    codigoRadicacion: number;
+    codigo: number;
 
-    detalle: string;
+    motivo: string;
 
     fecha: string;
     

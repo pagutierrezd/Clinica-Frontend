@@ -1,0 +1,124 @@
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0">Consulta</h5>
+    </div>
+    <div class="card-body p-5">
+        <form #f="ngForm">
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Elija la fecha de la consulta: </label>
+                <div class="col-sm-3">
+                    <input type="date" name="fecha" (click)="seleccionarFechaConsulta($event)" class="form-control"
+                        [(ngModel)]="fechaSeleccionada">
+                </div>
+            </div>
+            <br>
+            <table class="table">
+                <thead class="text-center">
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Fecha</th>
+                        <th>Notas del Medico</th>
+                        <th>Diagnostico</th>
+                        <th>Tratamiento</th>
+                        <th>Sintomas</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+                    <tr *ngFor="let item of auxiliarConsultasPaciente">
+                        <td>
+                            <p>{{item.nombrePaciente}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.fecha}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.notasMedico}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.diagnostico}}</p>
+                        </td>
+                        <td>
+                            <div style="display: flex; justify-content: center">
+                                <button routerLink="/tratamiento/{{item.idConsulta}}" type="submit"
+                                    class="btn btn-outline-none"><i class="fa-solid fa-eye"></i></button>
+                            </div>
+                        </td>
+                        <td>
+                            <p>{{item.sintomas}}</p>
+                        </td>
+                </tbody>
+            </table>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Notas médicas: </label>
+                <div class="col-sm-10">
+                    <textarea name="notas" [(ngModel)]="atencionDTO.notasMedico" class="form-control"
+                        id="notas"></textarea>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Diagnóstico: </label>
+                <div class="col-sm-10">
+                    <textarea name="diagnostico" [(ngModel)]="atencionDTO.diagnostico" class="form-control"
+                        id="diagnostico"></textarea>
+                </div>
+            </div>
+
+            <h5>Tratamiento</h5>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Observaciones: </label>
+                <div class="col-sm-10">
+                    <textarea name="observaciones" class="form-control" id="observaciones"></textarea>
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="medicamentos">Selecciona los medicamentos</label>
+                <div class="col-sm-3">
+                    <select name="medicamentos" class="form-select">
+                        <option value="" selected>Seleccione un medicamento</option>
+                        <option [value]="item" *ngFor="let item of medicamentos; index as i">{{item}}</option>
+                    </select>
+                    <input type="text" class="form-control" placeholder="Ingrese la dosis">
+                </div>
+            </div>
+
+            <input class="btn btn-primary" type="submit" value="Agregar">
+            <input class="btn btn-primary" type="submit" value="Actualizar">
+            <div>
+                <table class="table">
+                    <thead class="text-center">
+                        <tr>
+
+                            <th>Medicamento</th>
+                            <th>Dosis</th>
+                            <th>Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center table-group-divider">
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div>
+                <input class="btn btn-primary" type="submit" value="Eliminar">
+            </div>
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Sintomas: </label>
+                <div class="col-sm-10">
+                    <textarea name="sintomas" [(ngModel)]="atencionDTO.sintomas" class="form-control"
+                        id="sintomas"></textarea>
+                </div>
+            </div>
+            <div>
+                <input class="btn btn-primary" (click)="guardarHistoria()" type="submit" value="Guardar Historia">
+            </div>
+            <app-alerta [alerta]="alerta"></app-alerta>
+        </form>
+    </div>
+</div>

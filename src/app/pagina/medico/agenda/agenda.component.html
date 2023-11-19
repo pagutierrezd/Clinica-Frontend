@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-header ps-5 pt-4 pb-4">
+    <h5 class="mb-0">Agenda de citas</h5>
+  </div>
+  <div class="card-body p-5">
+    <form #f="ngForm">
+
+      <div class="mb-3 row">
+        <div class="col-sm-4">
+          <input type="date" name="fecha" class="form-control" [(ngModel)]="fechaSeleccionada"
+            (change)="filtrarTabla($event)">
+        </div>
+      </div>
+
+      <table class="table">
+        <thead class="text-center">
+          <tr>
+            <th>Paciente</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Motivo</th>
+            <th>Consulta</th>
+          </tr>
+
+        </thead>
+        <tbody class="table-group-divider text-center">
+          <tr *ngFor="let item of auxiliarAgenda">
+            <td>
+              <p>{{item.nombrePaciente}}</p>
+            </td>
+            <td>
+              <p>{{item.fecha}}</p>
+            </td>
+            <td>
+              <p>{{item.hora}}</p>
+            </td>
+            <td>
+              <p>{{item.motivo}}</p>
+            </td>
+            <td>
+              <div style="display: flex; justify-content: center">
+                <button type="submit" (click)="irAConsulta(item)" class="btn btn-outline-none"><i
+                    class="fa-solid fa-pen-to-square"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <app-alerta [alerta]="alerta"></app-alerta>
+    </form>
+  </div>
+</div>

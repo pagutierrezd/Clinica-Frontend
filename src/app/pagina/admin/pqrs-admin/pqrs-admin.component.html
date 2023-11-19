@@ -1,0 +1,109 @@
+<div class="card">
+    <div class="card-header ps-5 pt-4 pb-4">
+        <h5 class="mb-0">Pqrs</h5>
+    </div>
+    <div class="card-body p-5">
+        <form>
+
+            <h5>Filtro por Estado</h5>
+            <div class="mb-3 row">
+                <div class="col-sm-10">
+                    <select name="estado" class="form-select" (change)="filtrarTabla($event)">
+                        <option value="">Seleccione un estado</option>
+                        <option value="ACTIVO">ACTIVO</option>
+                        <option value="CERRADO">CERRADO</option>
+                    </select>
+                </div>
+            </div>
+            <table class="table">
+                <thead class="text-center">
+                    <tr>
+                        <th>Código de Radicación</th>
+                        <th>Detalle</th>
+                        <th>Fecha de creación</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider text-center">
+                    <tr *ngFor="let item of auxiliar">
+                        <td>
+                            <p>{{item.codigo}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.motivo}}</p>
+                        </td>
+                        <td>
+                            <p>{{item.fecha}}</p>
+                        </td>
+                        <td><span [ngClass]="item.estadoPqrs == 'CERRADO' ? 'text-bg-warning' : 'text-bg-success'"
+                                class="badge">{{item.estadoPqrs}}</span>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <h5>Cambiar estado</h5>
+            <div class="mb-3 row">
+                <div class="col-sm-10">
+                    <select name="estado" class="form-select">
+                        <option value="1">Pendiente</option>
+                        <option value="2">En curso</option>
+                        <option value="3">Resuelto</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Actualizar estado</button>
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Consulta: </label>
+                <div class="col-sm-10">
+                    <textarea width="200" height="100" class="form-control" name="consulta" a></textarea>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Historial de mensajes: </label>
+            </div>
+
+
+            <div class="chat-history">
+                <ul class="m-b-0">
+                    <li class="clearfix">
+                        <div class="message-data text-right">
+                            <span class="message-data-time">10:10 AM, Today</span>
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                        </div>
+                        <div class="message other-message float-right"> Hi Aiden, how are you? How is the project coming
+                            along? </div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="message-data">
+                            <span class="message-data-time">10:12 AM, Today</span>
+                        </div>
+                        <div class="message my-message">Are we meeting today?</div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="message-data">
+                            <span class="message-data-time">10:15 AM, Today</span>
+                        </div>
+                        <div class="message my-message">Project has been already finished and I have results to show
+                            you.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Respuesta: </label>
+                <div class="col-sm-10">
+                    <textarea width="200" height="100" class="form-control" name="mensaje"></textarea>
+                </div>
+            </div>
+
+            <div>
+                <button class="btn btn-primary" type="submit">Enviar</button>
+            </div>
+
+        </form>
