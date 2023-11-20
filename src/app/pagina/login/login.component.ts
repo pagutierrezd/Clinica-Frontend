@@ -4,6 +4,7 @@ import { LoginDTO } from 'src/app/modelo/clinica/LoginDTO';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { ClinicaService } from 'src/app/servicios/clinica.service';
 import { TokenService } from 'src/app/servicios/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent {
   mostrarMensaje: string = "";
   mostrarMess: boolean = false;
 
-  constructor(private tokenService: TokenService, private authService: AuthService, private clinicaService: ClinicaService) {
+  constructor(private tokenService: TokenService, private authService: AuthService, private clinicaService: ClinicaService, private router:Router) {
     this.loginDTO = new LoginDTO();
   }
 
@@ -25,6 +26,7 @@ export class LoginComponent {
     this.authService.login(this.loginDTO).subscribe({
       next: data => {
         this.tokenService.login(data.respuesta.token);
+        this.router.navigate(['/'])
 
       },
       error: error => {
@@ -48,6 +50,7 @@ export class LoginComponent {
       this.clinicaService.enviarLinkRecuperacion(email).subscribe({
         next: data => {
           this.alerta = { mensaje: data.respuesta, tipo: "success" };
+
         },
         error: error => {
           this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };

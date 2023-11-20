@@ -28,7 +28,7 @@ const routes: Routes = [
     { path: "", component: InicioComponent },
     { path: "recuperar-password/:email", component: RecuperarPasswordComponent },
 
-    { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
+    { path: "login", component: LoginComponent},
     { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
 
     {
