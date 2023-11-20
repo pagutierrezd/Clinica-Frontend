@@ -17,20 +17,25 @@
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center" ></div>
     <div class="container d-flex align-items-center">
 
       <h1 class="logo me-auto"><a href="index.html">Clínica Unida</a></h1>
       <nav id="navbar" class="navbar order-last order-lg-0">
+        
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
+          <li><a *ngIf="!isLogged" class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a *ngIf="!isLogged" class="nav-link scrollto" href="#contact">Contacto</a></li>
+          <li><a *ngIf="isLogged" class="nav-link scrollto" href="#contact">Gestión de la información personal</a></li>
+          <li><a *ngIf="isLogged" class="nav-link scrollto" href="#contact">Consultas</a></li>
+          <li><a *ngIf="isLogged" class="nav-link scrollto" href="#contact">PQRS</a></li>
+          <li><a *ngIf="isLogged" class="nav-link scrollto" href="#contact">Citas</a></li>
+          <li><a *ngIf="isLogged" class="nav-link scrollto" href="#contact">Cerrar sesión</a></li>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-
-      <button type="button" routerLink="/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Iniciar</span> sesión</button>
-      <button type="button" routerLink="/registro" class="registration-btn scrollto"><span class="d-none d-md-inline">Registrarme</span></button>
+      <button *ngIf="!isLogged" type="button" routerLink="/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Iniciar</span> sesión</button>
+      <button *ngIf="!isLogged" type="button" routerLink="/registro" class="registration-btn scrollto"><span class="d-none d-md-inline">Registrarme</span></button>
 
     </div>
   </header><!-- End Header -->

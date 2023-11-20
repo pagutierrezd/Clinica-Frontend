@@ -36,6 +36,7 @@ export class RegistroComponent {
       this.authService.registrarPaciente(this.registroPacienteDTO).subscribe({
         next: data => {
           this.alerta = { mensaje: data.respuesta, tipo: "success" };
+          console.log(data)
         },
         error: error => {
           this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };

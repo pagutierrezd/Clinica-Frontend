@@ -31,6 +31,13 @@ const routes: Routes = [
     { path: "login", component: LoginComponent},
     { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
 
+    
+    {
+        path: "paciente/menu-paciente", component: MenuPacienteComponent, canActivate: [RolesGuard], data: {
+            expectedRole: ["paciente"]
+        }
+    },
+
     {
         path: "paciente/pqrs-paciente", component: PqrsPacienteComponent, canActivate: [RolesGuard], data: {
             expectedRole: ["paciente"]
@@ -52,6 +59,12 @@ const routes: Routes = [
     {
         path: "paciente/pedir-cita", component: PedirCitaComponent, canActivate: [RolesGuard], data: {
             expectedRole: ["paciente"]
+        }
+    },
+
+    {
+        path: "medico/menu-medico", component: MenuMedicoComponent, canActivate: [RolesGuard], data: {
+            expectedRole: ["medico"]
         }
     },
 

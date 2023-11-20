@@ -23,7 +23,9 @@ export class AuthService {
     return this.http.post<MensajeDTO>(`${this.authURL}/login`, loginDTO);
   }
 
-  public cambiarPassword(cambiarPassword:CambioPasswordDTO):Observable<MensajeDTO>{
-    return this.http.put<MensajeDTO>(`${this.authURL}/cambiar-password`, cambiarPassword);
-  }
+  // public cambiarPassword(cambiarPassword:CambioPasswordDTO):Observable<MensajeDTO>{
+  //   return this.http.put<MensajeDTO>(`${this.authURL}/cambiar-password`, cambiarPassword);
+  // }
+
+
 }

@@ -788,11 +788,7 @@ section {
   font-size: 14px;
 }
 
-.about .video-box {
-  background: url("../img/about.jpg") center center no-repeat;
-  background-size: cover;
-  min-height: 500px;
-}
+
 
 .about .play-btn {
   width: 94px;
