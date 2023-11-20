@@ -70,4 +70,8 @@ export class PacienteService {
   public mostrarHistorialMensajesPqrs(codigoPqrs: number): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.userUrl}/historial-mensajes-pqrs/${codigoPqrs}`);
   }
+
+  public cambiarPassword(correo:string):Observable<MensajeDTO>{
+    return this.http.get<MensajeDTO>(`${this.userUrl}?correo=${correo}`);
+  }
 }
