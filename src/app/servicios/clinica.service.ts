@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClinicaService {
-  private clinicaURL = "http://localhost:8081/api/uniclinica";
+  private clinicaURL = "http://localhost:8081/api/clinica";
   constructor(private http: HttpClient) { }
 
   public listarCiudades(): Observable<MensajeDTO> {
@@ -17,7 +17,7 @@ export class ClinicaService {
     return this.http.get<MensajeDTO>(`${this.clinicaURL}/estado-pqrs`);
   }
   public listarTipoSangre(): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.clinicaURL}/tipos-sangre`);
+    return this.http.get<MensajeDTO>(`${this.clinicaURL}/tipo-sangre`);
   }
   public listarEPS(): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.clinicaURL}/eps`);

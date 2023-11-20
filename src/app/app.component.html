@@ -26,7 +26,7 @@
         <ul>
           <li><a *ngIf="!isLogged" class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a *ngIf="!isLogged" class="nav-link scrollto" href="#contact">Contacto</a></li>
-          <li><a *ngIf="isLogged" class="nav-link scrollto" href="#contact">Gestión de la información personal</a></li>
+          <li><a *ngIf="isLogged" class="nav-link scrollto" routerLink="/paciente/gestion-info-personal">Gestión de la información personal</a></li>
           <li><a *ngIf="isLogged" class="nav-link scrollto" href="#contact">Consultas</a></li>
           <li><a *ngIf="isLogged" class="nav-link scrollto" href="#contact">PQRS</a></li>
           <li><a *ngIf="isLogged" class="nav-link scrollto" href="#contact">Citas</a></li>
