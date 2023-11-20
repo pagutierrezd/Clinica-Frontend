@@ -5,6 +5,7 @@ import { RegistroPacienteDTO } from 'src/app/modelo/paciente/RegistroPacienteDTO
 import { AuthService } from 'src/app/servicios/auth.service';
 import { ClinicaService } from 'src/app/servicios/clinica.service';
 import { ImagenService } from 'src/app/servicios/imagen.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -14,29 +15,28 @@ import { ImagenService } from 'src/app/servicios/imagen.service';
 export class RegistroComponent {
 
   registroPacienteDTO: RegistroPacienteDTO;
-  ciudades: string[];
-  eps: EpsDTO[];
-  tipo_sangre: string[];
+  ciudades: string[] =[];
+  eps: string[] = [];
+  tipo_sangre: string[] = [];
   alerta!: Alerta;
   archivos!: FileList;
 
-  constructor(private authService: AuthService, private clinicaService: ClinicaService, private imagenService: ImagenService) {
+  constructor(private router:Router, private authService: AuthService, private clinicaService: ClinicaService, private imagenService: ImagenService) {
     this.registroPacienteDTO = new RegistroPacienteDTO();
-    this.ciudades = [];
-    this.eps = [];
     this.cargarEPS();
     this.cargarCiudades();
-    this.tipo_sangre = [];
     this.cargarTipoSangre();
-
   }
 
   public registrar() {
-    if (this.registroPacienteDTO.foto.length != 0) {
+    if (this.registroPacienteDTO.urlFoto.length != 0) {
+      
+      console.log("entré ->")
       this.authService.registrarPaciente(this.registroPacienteDTO).subscribe({
         next: data => {
           this.alerta = { mensaje: data.respuesta, tipo: "success" };
-          console.log(data)
+                  console.log("Entre", data)
+                  this.router.navigate(['/login'])
         },
         error: error => {
           this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
@@ -87,7 +87,7 @@ export class RegistroComponent {
 
   public onFileChange(event: any) {
     if (event.target.files.length > 0) {
-      this.registroPacienteDTO.foto = event.target.files[0].name;
+      this.registroPacienteDTO.urlFoto = event.target.files[0].name;
       this.archivos = event.target.files;
     }
   }
@@ -98,7 +98,7 @@ export class RegistroComponent {
       formData.append('file', this.archivos[0]);
       this.imagenService.subir(formData).subscribe({
         next: data => {
-          this.registroPacienteDTO.foto = data.respuesta.url;
+          this.registroPacienteDTO.urlFoto = data.respuesta.url;
 
         },
         error: error => {

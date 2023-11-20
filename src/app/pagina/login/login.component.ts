@@ -27,8 +27,7 @@ export class LoginComponent {
     this.authService.login(this.loginDTO).subscribe({
       next: data => {
         this.tokenService.login(data.respuesta.token);
-        console.log("Entre", data)
-        this.router.navigate(['/paciente/menu-paciente'])
+        this.router.navigate(['/paciente/inicio-paciente'])
 
       },
       error: error => {

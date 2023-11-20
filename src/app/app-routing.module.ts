@@ -14,13 +14,13 @@ import { MenuMedicoComponent } from './pagina/medico/menu-medico/menu-medico.com
 import { PqrsAdminComponent } from './pagina/admin/pqrs-admin/pqrs-admin.component';
 import { RegistroMedicosComponent } from './pagina/admin/registro-medicos/registro-medicos.component';
 import { RecuperarPasswordComponent } from './pagina/recuperar-password/recuperar-password.component';
-import { MenuPacienteComponent } from './pagina/paciente/menu-paciente/menu-paciente.component';
 import { ConsultasPacienteComponent } from './pagina/paciente/consultas-paciente/consultas-paciente.component';
 import { GestionInfoPersonalComponent } from './pagina/paciente/gestion-info-personal/gestion-info-personal.component';
 import { PedirCitaComponent } from './pagina/paciente/pedir-cita/pedir-cita.component';
 import { PqrsPacienteComponent } from './pagina/paciente/pqrs-paciente/pqrs-paciente.component';
 import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
+import { InicioPacienteComponent } from './pagina/paciente/inicio-paciente/inicio-paciente.component';
 
 
 const routes: Routes = [
@@ -28,15 +28,9 @@ const routes: Routes = [
     { path: "", component: InicioComponent },
     { path: "recuperar-password/:email", component: RecuperarPasswordComponent },
 
-    { path: "login", component: LoginComponent},
+    { path: "login", component: LoginComponent },
     { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
 
-    
-    {
-        path: "paciente/menu-paciente", component: MenuPacienteComponent, canActivate: [RolesGuard], data: {
-            expectedRole: ["paciente"]
-        }
-    },
 
     {
         path: "paciente/pqrs-paciente", component: PqrsPacienteComponent, canActivate: [RolesGuard], data: {
@@ -55,7 +49,13 @@ const routes: Routes = [
             expectedRole: ["paciente"]
         }
     },
-    
+
+    {
+        path: "paciente/inicio-paciente", component: InicioPacienteComponent, canActivate: [RolesGuard], data: {
+            expectedRole: ["paciente"]
+        }
+    },
+
     {
         path: "paciente/pedir-cita", component: PedirCitaComponent, canActivate: [RolesGuard], data: {
             expectedRole: ["paciente"]

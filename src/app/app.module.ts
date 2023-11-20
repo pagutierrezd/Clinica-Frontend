@@ -19,13 +19,13 @@ import { MenuMedicoComponent } from './pagina/medico/menu-medico/menu-medico.com
 import { PqrsAdminComponent } from './pagina/admin/pqrs-admin/pqrs-admin.component';
 import { RegistroMedicosComponent } from './pagina/admin/registro-medicos/registro-medicos.component';
 import { RecuperarPasswordComponent } from './pagina/recuperar-password/recuperar-password.component';
-import { MenuPacienteComponent } from './pagina/paciente/menu-paciente/menu-paciente.component';
 import { ConsultasPacienteComponent } from './pagina/paciente/consultas-paciente/consultas-paciente.component';
 import { GestionInfoPersonalComponent } from './pagina/paciente/gestion-info-personal/gestion-info-personal.component';
 import { PedirCitaComponent } from './pagina/paciente/pedir-cita/pedir-cita.component';
 import { PqrsPacienteComponent } from './pagina/paciente/pqrs-paciente/pqrs-paciente.component';
 import { AlertaComponent } from './pagina/alerta/alerta.component';
 import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
+import { InicioPacienteComponent } from './pagina/paciente/inicio-paciente/inicio-paciente.component';
 
 
 @NgModule({
@@ -45,12 +45,12 @@ import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
     PqrsAdminComponent,
     RegistroMedicosComponent,
     RecuperarPasswordComponent,
-    MenuPacienteComponent,
     ConsultasPacienteComponent,
     GestionInfoPersonalComponent,
     PedirCitaComponent,
     PqrsPacienteComponent,
-    AlertaComponent
+    AlertaComponent,
+    InicioPacienteComponent
   ],
   imports: [
     BrowserModule,

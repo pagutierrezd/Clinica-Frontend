@@ -3,10 +3,10 @@ export class RegistroPacienteDTO {
     nombre: string = "";
     cedula: string = "";
     telefono: string = "";
-    email: string = "";
+    correo: string = "";
     password: string = "";
     confirmaPassword: string = "";
-    foto: string = "";
+    urlFoto: string = "";
     fechaNacimiento: string = "";
     ciudad: string = "";
     eps: number = 0;

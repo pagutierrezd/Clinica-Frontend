@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TokenService } from './servicios/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent {
 
   isLogged = false;
   email: string = "";
-  constructor(private tokenService: TokenService) { }
+  constructor(private tokenService: TokenService, private router: Router) { }
   ngOnInit(): void {
     this.isLogged = this.tokenService.isLogged();
     if (this.isLogged) {
@@ -21,5 +22,6 @@ export class AppComponent {
   public logout() {
     this.tokenService.logout();
   }
+
 }
 
