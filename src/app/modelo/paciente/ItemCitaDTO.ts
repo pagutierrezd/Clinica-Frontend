@@ -2,9 +2,7 @@ export class ItemCitaDTO {
 
     motivo: string= ""
 
-    fecha: string= ""
-
-    hora: string= ""
+    fechaCita: string= ""
 
     idMedico: number= 0
 

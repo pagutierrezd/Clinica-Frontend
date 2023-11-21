@@ -21,20 +21,21 @@ export class PedirCitaComponent {
   citasPaciente: ItemCitaPacienteDTO[];
   auxiliarCitas: ItemCitaPacienteDTO[];
   fechaCitaSeleccionada: string = ''
-  especialidades: string[];
-  listaMedicoCitaDTO: ItemMedicoCitaDTO[];
+  especialidades: string[]=[];
+  listaMedicoCitaDTO: ItemMedicoCitaDTO[]=[];
   idMedico: number = 0
   hora: string = ""
+  medicoSeleccionado:ItemMedicoCitaDTO ;
+  hora2:string="";
 
   constructor(private clinicaService: ClinicaService, private pacienteService: PacienteService, private tokenService: TokenService) {
     this.filtroCitaDTO = new FiltroCitaDTO;
     this.citaDTO = new ItemCitaDTO;
-    this.especialidades = [];
     this.citasPaciente = [];
-    this.listaMedicoCitaDTO = [];
     this.auxiliarCitas = this.citasPaciente;
     this.cargarEspecialidades();
     this.mostrarCitasPaciente();
+    this.medicoSeleccionado = new ItemMedicoCitaDTO;
 
   }
 
@@ -60,6 +61,7 @@ export class PedirCitaComponent {
     this.clinicaService.listarEspecialidades().subscribe({
       next: data => {
         this.especialidades = data.respuesta;
+        
       },
       error: error => {
         console.log(error);
@@ -71,16 +73,14 @@ export class PedirCitaComponent {
 
     let codigoPaciente = this.tokenService.getCodigo();
     this.citaDTO.idPaciente = codigoPaciente;
-    this.citaDTO.hora = this.hora;
-    this.citaDTO.idMedico = this.idMedico;
-    console.log(this.citaDTO.fecha);
-    console.log(this.citaDTO.hora);
-    console.log(this.citaDTO.idMedico);
-    console.log(this.citaDTO.idPaciente);
-    console.log(this.citaDTO.motivo);
+    this.citaDTO.idMedico = this.medicoSeleccionado.codigoMedico.valueOf();
+    const fecha =  this.citaDTO.fechaCita +"T"+ this.medicoSeleccionado.horaDisponible;
+    this.citaDTO.fechaCita =fecha;
 
     this.pacienteService.agendarCita(this.citaDTO).subscribe({
       next: data => {
+        console.log(data.respuesta);
+        console.log(data);
         this.alerta = { mensaje: data.respuesta, tipo: "success" };
       },
       error: error => {
