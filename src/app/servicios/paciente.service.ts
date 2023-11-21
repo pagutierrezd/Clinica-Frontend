@@ -17,19 +17,19 @@ export class PacienteService {
   constructor(private http: HttpClient) { }
 
   public editarPerfil(codigoPaciente: number, pacienteDTO: ActualizarPacienteDTO): Observable<MensajeDTO> {
-    return this.http.put<MensajeDTO>(`${this.userUrl}/editar-perfil/${codigoPaciente}`, pacienteDTO);
+    return this.http.put<MensajeDTO>(`${this.userUrl}`, pacienteDTO);
   }
 
   public eliminarCuenta(codigo: number): Observable<MensajeDTO> {
     return this.http.delete<MensajeDTO>(`${this.userUrl}/eliminar/${codigo}`);
   }
 
-  public cargarDatosPaciente(codigo: number): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.userUrl}/datos-paciente/${codigo}`);
+  public cargarDatosPaciente(codigo: number): Observable<ActualizarPacienteDTO> {
+    return this.http.get<ActualizarPacienteDTO>(`${this.userUrl}/detalle/${codigo}`);
   }
 
   public agendarCita(citaDTO: ItemCitaDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.userUrl}/agendar-cita`, citaDTO);
+    return this.http.post<MensajeDTO>(`${this.userUrl}/cita`, citaDTO);
   }
 
   public crearPQRS(pqrsPacienteDTO: RegistroPqrDTO): Observable<MensajeDTO> {
@@ -64,7 +64,7 @@ export class PacienteService {
 
   public filtrarMedicoCita(filtroCitaDTO: FiltroCitaDTO): Observable<MensajeDTO> {
     //return this.http.request<MensajeDTO>('get', `${this.userUrl}/filtrar-medico-cita`, { body: filtroCitaDTO});
-    return this.http.post<MensajeDTO>(`${this.userUrl}/filtrar-medico-cita`, filtroCitaDTO);
+    return this.http.post<MensajeDTO>(`${this.userUrl}/listar-medicos`, filtroCitaDTO);
   }
 
   public mostrarHistorialMensajesPqrs(codigoPqrs: number): Observable<MensajeDTO> {

@@ -23,7 +23,7 @@ export class ClinicaService {
     return this.http.get<MensajeDTO>(`${this.clinicaURL}/eps`);
   }
   public listarEspecialidades(): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.clinicaURL}/especialidades`);
+    return this.http.get<MensajeDTO>(`${this.clinicaURL}/lista-especialidades`);
   }
   public enviarLinkRecuperacion(email:string):Observable<MensajeDTO>{
     return this.http.get<MensajeDTO>(`${this.clinicaURL}/enviar-link-recuperacion/${email}`);

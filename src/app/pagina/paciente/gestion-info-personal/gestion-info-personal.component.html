@@ -4,24 +4,24 @@
         <h5 class="mb-0"><i class="fa-solid fa-user-plus me-3"></i>Información personal</h5>
     </div>
     <div class="card-body p-5">
-        <form #f="ngForm">
+        <form #f="ngForm" (ngSubmit)="actualizar()">
 
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Cédula: </label>
                 <div class="col-sm-10">
                     <input #cedula="ngModel"
                         [ngClass]="cedula.invalid && (cedula.dirty || cedula.touched) ? 'is-invalid' : ''" type="text"
-                        name="cedula" class="form-control" required [(ngModel)]="pacienteActualizadoDTO.cedula"
-                        value="{{datosPaciente.cedula}}" />
+                        name="cedula" class="form-control" required [(ngModel)]="pacienteActualizadoDTO.cedula"  />
                 </div>
             </div>
+
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">Nombre: </label>
                 <div class="col-sm-10">
                     <input #nombre="ngModel"
                         [ngClass]="nombre.invalid && (nombre.dirty || nombre.touched) ? 'is-invalid' : ''" type="text"
                         name="nombre" class="form-control" required [(ngModel)]="pacienteActualizadoDTO.nombre"
-                        value="{{datosPaciente.nombre}}" />
+                        />
                 </div>
             </div>
             <div class="mb-3 row">
@@ -30,7 +30,7 @@
                     <input #telefono="ngModel"
                         [ngClass]="telefono.invalid && (telefono.dirty || telefono.touched) ? 'is-invalid' : ''"
                         type="text" name="telefono" class="form-control" required="true" maxlength="10"
-                        [(ngModel)]="pacienteActualizadoDTO.telefono" value="{{datosPaciente.telefono}}" />
+                        [(ngModel)]="pacienteActualizadoDTO.telefono"/>
                 </div>
             </div>
             <div class="mb-3 row">
@@ -66,8 +66,7 @@
                 <div class="col-sm-10">
                     <input type="text" name="alergias" #alergias="ngModel"
                         [ngClass]="alergias.invalid && (alergias.dirty || alergias.touched) ? 'is-invalid' : ''"
-                        required="true" class="form-control" [(ngModel)]="pacienteActualizadoDTO.alergias"
-                        value="{{datosPaciente.alergias}}" />
+                        required="true" class="form-control" [(ngModel)]="pacienteActualizadoDTO.alergias"/>
                 </div>
 
             </div>
@@ -76,7 +75,7 @@
                 <div class="col-sm-10">
                     <select name="eps" required class="form-select" [(ngModel)]="pacienteActualizadoDTO.eps">
                         <option value="" selected>Seleccione una EPS</option>
-                        <option [value]="item.codigo" *ngFor="let item of eps; index as i">{{item.nombre}}</option>
+                        <option [value]="item" *ngFor="let item of eps; index as i">{{item}}</option>
                     </select>
                 </div>
 
@@ -98,7 +97,7 @@
                     <input type="email" name="correo" #correo="ngModel"
                         [ngClass]="correo.invalid && (correo.dirty || correo.touched) ? 'is-invalid' : ''"
                         required="true" class="form-control" email="true" maxlength="50"
-                        [(ngModel)]="pacienteActualizadoDTO.email" value="{{datosPaciente.email}}" />
+                        [(ngModel)]="pacienteActualizadoDTO.correo"/>
                 </div>
             </div>
 

@@ -4,5 +4,5 @@ export class ItemMedicoCitaDTO {
 
     nombreMedico: string= ""
 
-    hora: string= ""
+    horaDisponible: string= ""
 }

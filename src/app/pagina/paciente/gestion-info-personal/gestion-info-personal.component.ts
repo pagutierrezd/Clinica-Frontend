@@ -6,6 +6,7 @@ import { ClinicaService } from 'src/app/servicios/clinica.service';
 import { ImagenService } from 'src/app/servicios/imagen.service';
 import { PacienteService } from 'src/app/servicios/paciente.service';
 import { TokenService } from 'src/app/servicios/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gestion-info-personal',
@@ -14,21 +15,18 @@ import { TokenService } from 'src/app/servicios/token.service';
 })
 export class GestionInfoPersonalComponent {
 
-  ciudades: string[];
-  tipo_sangre: string[];
-  eps: EpsDTO[];
+  ciudades: string[] =[];
+  tipo_sangre: string[] =[];
+  eps: string[] =[];
   archivos!: FileList;
   alerta!: Alerta
   datosPaciente: ActualizarPacienteDTO;
 
   pacienteActualizadoDTO: ActualizarPacienteDTO;
-  constructor(private tokenService: TokenService, private pacienteService: PacienteService, private clinicaService: ClinicaService, private imagenService: ImagenService) {
+  constructor(private tokenService: TokenService, private pacienteService: PacienteService, private clinicaService: ClinicaService, private imagenService: ImagenService, private router: Router) {
     this.pacienteActualizadoDTO = new ActualizarPacienteDTO();
     this.datosPaciente = new ActualizarPacienteDTO();
-    this.ciudades = [];
-    this.eps = [];
     this.cargarCiudades();
-    this.tipo_sangre = [];
     this.cargarTipoSangre();
     this.cargarEPS();
     this.obtenerDatosPaciente();
@@ -36,12 +34,13 @@ export class GestionInfoPersonalComponent {
 
   public obtenerDatosPaciente() {
     let codigoPaciente = this.tokenService.getCodigo();
-
     this.pacienteService.cargarDatosPaciente(codigoPaciente).subscribe({
       next: data => {
-        this.datosPaciente = data.respuesta;
+        
+        this.pacienteActualizadoDTO = data;
       },
       error: error => {
+        console.log("error",error)
         this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
       }
     });
@@ -52,7 +51,7 @@ export class GestionInfoPersonalComponent {
 
     let codigoPaciente = this.tokenService.getCodigo();
 
-    if (this.pacienteActualizadoDTO.foto.length != 0) {
+    if (this.pacienteActualizadoDTO.urlFoto.length != 0) {
       this.pacienteService.editarPerfil(codigoPaciente, this.pacienteActualizadoDTO).subscribe({
         next: data => {
           this.alerta = { mensaje: data.respuesta, tipo: "success" };
@@ -73,6 +72,8 @@ export class GestionInfoPersonalComponent {
     this.pacienteService.eliminarCuenta(codigoPaciente).subscribe({
       next: data => {
         this.alerta = { mensaje: data.respuesta, tipo: "success" };
+        this.tokenService.logout();
+        this.router.navigate(['/login'])
       },
       error: error => {
         this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
@@ -116,7 +117,7 @@ export class GestionInfoPersonalComponent {
 
   public onFileChange(event: any) {
     if (event.target.files.length > 0) {
-      this.pacienteActualizadoDTO.foto = event.target.files[0].name;
+      this.pacienteActualizadoDTO.urlFoto = event.target.files[0].name;
       this.archivos = event.target.files;
     }
   }
@@ -127,7 +128,7 @@ export class GestionInfoPersonalComponent {
       formData.append('file', this.archivos[0]);
       this.imagenService.subir(formData).subscribe({
         next: data => {
-          this.pacienteActualizadoDTO.foto = data.respuesta.url;
+          this.pacienteActualizadoDTO.urlFoto = data.respuesta.url;
 
         },
         error: error => {
