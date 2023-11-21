@@ -27,8 +27,8 @@
           <li><a *ngIf="!isLogged" class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a *ngIf="!isLogged" class="nav-link scrollto" href="#contact">Contacto</a></li>
           <li><a *ngIf="isLogged" class="nav-link scrollto" routerLink="/paciente/gestion-info-personal">Gestión de la información personal</a></li>
-          <li><a *ngIf="isLogged" class="nav-link scrollto" href="#contact">Consultas</a></li>
-          <li><a *ngIf="isLogged" class="nav-link scrollto" href="#contact">PQRS</a></li>
+          <li><a *ngIf="isLogged" class="nav-link scrollto" routerLink="paciente/consultas-paciente">Consultas</a></li>
+          <li><a *ngIf="isLogged" class="nav-link scrollto" routerLink="paciente/pqrs-paciente">PQRS</a></li>
           <li><a *ngIf="isLogged" class="nav-link scrollto" routerLink= "paciente/pedir-cita" >Citas</a></li>
           <li><button *ngIf="isLogged" (click)="logout()" type="button" class=" appointment-btn nav-link scrollto" href="#contact">Cerrar sesión</button></li>
         </ul>
